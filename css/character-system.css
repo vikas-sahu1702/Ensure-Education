@@ -1,0 +1,485 @@
+/**
+ * Ensure Education ANIMATED CARTOON CHARACTER SYSTEM
+ * Cohesive, friendly, lively, and premium character layer.
+ * Strictly non-blocking (pointer-events: none) with GPU-accelerated transforms.
+ */
+
+/* Character Layer Container */
+.talvex-char-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none !important;
+  user-select: none;
+  overflow: visible;
+  z-index: 2;
+}
+
+/* Individual Character Wrapper */
+.talvex-char {
+  position: absolute;
+  pointer-events: none !important;
+  will-change: transform, opacity;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease;
+}
+
+.talvex-char svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  display: block;
+}
+
+/* ==========================================================================
+   1. SIZE TOKENS
+   ========================================================================== */
+.char-size-lg {
+  width: 150px;
+  height: 150px;
+}
+
+.char-size-md {
+  width: 100px;
+  height: 100px;
+}
+
+.char-size-sm {
+  width: 62px;
+  height: 62px;
+}
+
+.char-size-xs {
+  width: 46px;
+  height: 46px;
+}
+
+/* ==========================================================================
+   2. DEPTH SYSTEM (2.5D Layering)
+   ========================================================================== */
+.char-depth-bg {
+  z-index: 1;
+  opacity: 0.48;
+  filter: blur(1.5px) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.35));
+}
+
+.char-depth-mid {
+  z-index: 3;
+  opacity: 0.88;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.45));
+}
+
+.char-depth-fore {
+  z-index: 5;
+  opacity: 1;
+  filter: drop-shadow(0 12px 26px rgba(0, 0, 0, 0.65)) drop-shadow(0 0 12px rgba(192, 88, 0, 0.22));
+}
+
+[data-theme="light"] .char-depth-bg {
+  opacity: 0.52;
+  filter: blur(1px) drop-shadow(0 4px 10px rgba(70, 45, 17, 0.15));
+}
+
+[data-theme="light"] .char-depth-mid {
+  opacity: 0.92;
+  filter: drop-shadow(0 6px 16px rgba(70, 45, 17, 0.18));
+}
+
+[data-theme="light"] .char-depth-fore {
+  opacity: 1;
+  filter: drop-shadow(0 10px 22px rgba(192, 88, 0, 0.25));
+}
+
+/* ==========================================================================
+   3. CORNER ENTRANCE ANIMATIONS
+   ========================================================================== */
+/* Initial state before reveal */
+.char-animate-ready {
+  opacity: 0;
+  transform-box: fill-box;
+}
+
+/* Bottom Left Entrance: Rises and tilts gently */
+.char-enter-bottom-left.char-revealed {
+  animation: charEnterBottomLeft 1.2s cubic-bezier(0.2, 0.85, 0.3, 1) forwards;
+}
+
+@keyframes charEnterBottomLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(-40px, 80px, 0) scale(0.8) rotate(-6deg);
+  }
+  70% {
+    opacity: 1;
+    transform: translate3d(5px, -8px, 0) scale(1.04) rotate(1deg);
+  }
+  100% {
+    opacity: var(--target-opacity, 1);
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+}
+
+/* Bottom Right Entrance: Gentle slide from right */
+.char-enter-bottom-right.char-revealed {
+  animation: charEnterBottomRight 1.2s cubic-bezier(0.2, 0.85, 0.3, 1) forwards;
+}
+
+@keyframes charEnterBottomRight {
+  0% {
+    opacity: 0;
+    transform: translate3d(50px, 75px, 0) scale(0.82) rotate(5deg);
+  }
+  70% {
+    opacity: 1;
+    transform: translate3d(-6px, -6px, 0) scale(1.03) rotate(-1deg);
+  }
+  100% {
+    opacity: var(--target-opacity, 1);
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+}
+
+/* Top Left Entrance: Slides down subtly */
+.char-enter-top-left.char-revealed {
+  animation: charEnterTopLeft 1.1s cubic-bezier(0.2, 0.85, 0.3, 1) forwards;
+}
+
+@keyframes charEnterTopLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(-35px, -60px, 0) scale(0.85);
+  }
+  75% {
+    opacity: 1;
+    transform: translate3d(4px, 6px, 0) scale(1.03);
+  }
+  100% {
+    opacity: var(--target-opacity, 1);
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+/* Top Right Entrance */
+.char-enter-top-right.char-revealed {
+  animation: charEnterTopRight 1.1s cubic-bezier(0.2, 0.85, 0.3, 1) forwards;
+}
+
+@keyframes charEnterTopRight {
+  0% {
+    opacity: 0;
+    transform: translate3d(40px, -55px, 0) scale(0.85);
+  }
+  75% {
+    opacity: 1;
+    transform: translate3d(-4px, 5px, 0) scale(1.03);
+  }
+  100% {
+    opacity: var(--target-opacity, 1);
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+/* Side Peek Entrance: Peeks over container edge */
+.char-enter-side-left.char-revealed {
+  animation: charEnterSideLeft 1.25s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes charEnterSideLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(-65px, 0, 0) scale(0.8) rotate(-10deg);
+  }
+  65% {
+    opacity: 1;
+    transform: translate3d(12px, 0, 0) scale(1.04) rotate(2deg);
+  }
+  100% {
+    opacity: var(--target-opacity, 1);
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+}
+
+.char-enter-side-right.char-revealed {
+  animation: charEnterSideRight 1.25s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes charEnterSideRight {
+  0% {
+    opacity: 0;
+    transform: translate3d(70px, 0, 0) scale(0.8) rotate(10deg);
+  }
+  65% {
+    opacity: 1;
+    transform: translate3d(-10px, 0, 0) scale(1.04) rotate(-2deg);
+  }
+  100% {
+    opacity: var(--target-opacity, 1);
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+}
+
+/* Fade Pop in Place (for center / card characters) */
+.char-enter-pop.char-revealed {
+  animation: charEnterPop 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes charEnterPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) translateY(20px);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(1.06) translateY(-4px);
+  }
+  100% {
+    opacity: var(--target-opacity, 1);
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ==========================================================================
+   4. DIVERSE IDLE ANIMATIONS
+   ========================================================================== */
+/* Character Inner Body wrapper for idle motions */
+.char-body {
+  width: 100%;
+  height: 100%;
+  transform-origin: center bottom;
+}
+
+/* 4.1 Gentle Floating (like Edi, Scrollie, Mascot Sprites) */
+.idle-float .char-body {
+  animation: idleFloat 4.2s ease-in-out infinite alternate;
+}
+
+@keyframes idleFloat {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(0, -9px, 0) rotate(1.5deg);
+  }
+  100% {
+    transform: translate3d(0, -16px, 0) rotate(-1deg);
+  }
+}
+
+/* 4.2 Slow Breathing (like Parent, Dean, Scholar) */
+.idle-breathe .char-body {
+  animation: idleBreathe 3.6s ease-in-out infinite;
+}
+
+@keyframes idleBreathe {
+  0%, 100% {
+    transform: scale(1, 1) translateY(0);
+  }
+  50% {
+    transform: scale(1.025, 0.98) translateY(1.5px);
+  }
+}
+
+/* 4.3 Head Tilt & Curiosity (like Scholar, Auditor) */
+.idle-head-tilt .char-body {
+  animation: idleHeadTilt 5.5s ease-in-out infinite;
+}
+
+@keyframes idleHeadTilt {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(3.5deg) translateY(-2px);
+  }
+  60% {
+    transform: rotate(-3deg) translateY(1px);
+  }
+  80% {
+    transform: rotate(1deg);
+  }
+}
+
+/* 4.4 Gentle Sway (like Shield Guardian, Policy Architect) */
+.idle-sway .char-body {
+  animation: idleSway 4.8s ease-in-out infinite alternate;
+}
+
+@keyframes idleSway {
+  0% {
+    transform: rotate(-2.5deg) translateX(-2px);
+  }
+  100% {
+    transform: rotate(2.5deg) translateX(2px);
+  }
+}
+
+/* 4.5 Friendly Waving Arm */
+.char-arm-wave {
+  transform-origin: 15% 30%;
+  animation: charWave 2.8s ease-in-out infinite;
+}
+
+@keyframes charWave {
+  0%, 100%, 40% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(-18deg);
+  }
+  20% {
+    transform: rotate(14deg);
+  }
+  30% {
+    transform: rotate(-12deg);
+  }
+}
+
+/* 4.6 Scanning / Magnifying Search (Inspector Rishi) */
+.char-arm-scan {
+  transform-origin: 30% 60%;
+  animation: charScan 4.5s ease-in-out infinite;
+}
+
+@keyframes charScan {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(4px, -3px) rotate(6deg);
+  }
+  50% {
+    transform: translate(-3px, 2px) rotate(-5deg);
+  }
+  75% {
+    transform: translate(2px, 3px) rotate(3deg);
+  }
+}
+
+/* 4.7 Blinking Eyes */
+.char-eyes {
+  animation: charBlink 4.2s infinite;
+  transform-origin: center;
+}
+
+@keyframes charBlink {
+  0%, 46%, 50%, 100% {
+    transform: scaleY(1);
+  }
+  48% {
+    transform: scaleY(0.08);
+  }
+}
+
+/* 4.8 Tassel / Accessory Sway (Edi graduation cap) */
+.char-tassel-sway {
+  transform-origin: top center;
+  animation: tasselSway 3.2s ease-in-out infinite alternate;
+}
+
+@keyframes tasselSway {
+  0% {
+    transform: rotate(-8deg);
+  }
+  100% {
+    transform: rotate(10deg);
+  }
+}
+
+/* ==========================================================================
+   5. PEEKING POSITIONS
+   ========================================================================== */
+/* Peeking over the right edge */
+.char-peek-edge-right {
+  right: -24px !important;
+}
+
+/* Peeking over the left edge */
+.char-peek-edge-left {
+  left: -22px !important;
+}
+
+/* Peeking from bottom viewport */
+.char-peek-bottom {
+  bottom: -18px !important;
+}
+
+/* Hover subtle reaction (if cursor hovers nearby container) */
+.talvex-char:hover {
+  filter: brightness(1.08);
+  transition: filter 0.3s ease;
+}
+
+/* ==========================================================================
+   6. RESPONSIVE BEHAVIOR & MEDIA QUERIES
+   ========================================================================== */
+/* Tablet */
+@media (max-width: 1024px) {
+  .char-size-lg {
+    width: 115px;
+    height: 115px;
+  }
+  .char-size-md {
+    width: 80px;
+    height: 80px;
+  }
+  .char-size-sm {
+    width: 52px;
+    height: 52px;
+  }
+  .char-size-xs {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+  .char-size-lg {
+    width: 85px;
+    height: 85px;
+  }
+  .char-size-md {
+    width: 65px;
+    height: 65px;
+  }
+  .char-size-sm {
+    width: 44px;
+    height: 44px;
+  }
+  .char-size-xs {
+    width: 32px;
+    height: 32px;
+  }
+  /* Hide background clutter on narrow mobile viewports while retaining 5-7 key characters */
+  .talvex-char.char-hide-mobile {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   7. REDUCED MOTION (Accessibility)
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .talvex-char,
+  .char-body,
+  .char-arm-wave,
+  .char-arm-scan,
+  .char-eyes,
+  .char-tassel-sway,
+  .char-enter-bottom-left.char-revealed,
+  .char-enter-bottom-right.char-revealed,
+  .char-enter-top-left.char-revealed,
+  .char-enter-top-right.char-revealed,
+  .char-enter-side-left.char-revealed,
+  .char-enter-side-right.char-revealed,
+  .char-enter-pop.char-revealed {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: var(--target-opacity, 1) !important;
+  }
+}

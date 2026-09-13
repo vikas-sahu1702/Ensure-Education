@@ -1,0 +1,131 @@
+/* ==========================================================================
+   Ensure Education PREMIUM MASCOT ANIMATIONS
+   ========================================================================== */
+
+/* Mascot Containers */
+.mascot-wrapper {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1; /* Stay behind main content */
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* Base Reveal Styles */
+.mascot-reveal-left {
+  transform: translate(-60px, 40px) scale(0.85);
+  transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mascot-reveal-right {
+  transform: translate(60px, 40px) scale(0.85);
+  transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mascot-reveal-bottom {
+  transform: translateY(60px) scale(0.85);
+  transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Revealed State */
+.mascot-wrapper.is-revealed {
+  opacity: var(--mascot-opacity, 1);
+  transform: translate(0, 0) scale(1);
+}
+
+/* ==========================================================================
+   IDLE ANIMATIONS
+   ========================================================================== */
+
+/* Continuous Floating */
+.mascot-float-slow {
+  animation: floatMascotSlow 6s ease-in-out infinite;
+}
+.mascot-float-med {
+  animation: floatMascotMed 5s ease-in-out infinite;
+}
+.mascot-float-fast {
+  animation: floatMascotFast 4s ease-in-out infinite;
+}
+
+@keyframes floatMascotSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes floatMascotMed {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes floatMascotFast {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Blinking Eyes (Independent from body) */
+.mascot-eyes {
+  transform-origin: center;
+  animation: blinkEyes 4.5s infinite;
+}
+.mascot-eyes-alt {
+  transform-origin: center;
+  animation: blinkEyes 5.5s infinite 1s;
+}
+
+@keyframes blinkEyes {
+  0%, 96%, 98%, 100% { transform: scaleY(1); }
+  97% { transform: scaleY(0.1); }
+}
+
+/* Breathing / Slight Scaling */
+.mascot-breathe {
+  transform-origin: center bottom;
+  animation: breatheMascot 4s ease-in-out infinite;
+}
+
+@keyframes breatheMascot {
+  0%, 100% { transform: scale(1, 1); }
+  50% { transform: scale(1.02, 0.98); }
+}
+
+/* Subtle Swaying (for tassels/ribbons) */
+.mascot-sway {
+  transform-origin: top center;
+  animation: swayMascot 3.5s ease-in-out infinite;
+}
+
+@keyframes swayMascot {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(5deg); }
+}
+
+/* Bobbing Hands */
+.mascot-hand-l {
+  animation: bobHandL 3s ease-in-out infinite;
+}
+.mascot-hand-r {
+  animation: bobHandR 3.2s ease-in-out infinite 0.5s;
+}
+
+@keyframes bobHandL {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-4px) rotate(8deg); }
+}
+@keyframes bobHandR {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-5px) rotate(-6deg); }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .mascot-wrapper, .mascot-reveal-left, .mascot-reveal-right, .mascot-reveal-bottom {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+  .mascot-float-slow, .mascot-float-med, .mascot-float-fast, .mascot-breathe, .mascot-eyes, .mascot-eyes-alt, .mascot-sway, .mascot-hand-l, .mascot-hand-r {
+    animation: none !important;
+  }
+}

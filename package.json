@@ -1,0 +1,15 @@
+{
+  "name": "ensureducation-backend",
+  "version": "1.0.0",
+  "description": "TALVEX MongoDB Backend",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "seed": "node server/db/seed.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "mongoose": "^8.2.1"
+  }
+}

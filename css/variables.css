@@ -1,0 +1,184 @@
+/* ==========================================================================
+   Ensure Education DESIGN SYSTEM TOKENS & VARIABLES
+   EXACT BURNT COFFEE LUXURY PALETTE
+   Palette: #713600 (Dark Roast), #C05800 (Burnt Orange),
+            #FDFBD4 (Buttercream Ivory), #38240D (Charred Espresso)
+   ========================================================================== */
+
+:root {
+  /* Color Palette: Charred Espresso Obsidian & Dark Roast Bases */
+  --color-obsidian-950: #140C04;
+  --color-obsidian-900: #1D1207;
+  --color-obsidian-850: #26180A;
+  --color-obsidian-800: #301E0C;
+  --color-obsidian-750: #38240D;       /* Swatch: Deep Dark Roast Espresso */
+  --color-obsidian-700: #462D11;
+
+  /* Card Surfaces & Glass Overlays */
+  --surface-base: #1D1207;
+  --surface-card: #341D08;
+  --surface-card-hover: #46270B;       /* Swatch: Elevated Hover */
+  --surface-elevated: #3D220B;         /* Swatch: Elevated Container */
+  --surface-glass: rgba(56, 36, 13, 0.92);
+  --surface-glass-subtle: rgba(192, 88, 0, 0.12);
+
+  /* Borders & Dividers */
+  --border-subtle: rgba(192, 88, 0, 0.25);
+  --border-card: rgba(192, 88, 0, 0.45);
+  --border-focus: rgba(192, 88, 0, 0.85);
+  --border-gold-subtle: rgba(192, 88, 0, 0.42);
+
+  /* Typography Colors: Buttercream Cream, Warm Latte & Muted Mocha */
+  --text-ivory: #FDFBD4;              /* Swatch: Buttercream Ivory */
+  --text-primary: #FFFFFF;
+  --text-secondary: #F3E4C8;
+  --text-muted: #B8997A;
+  --text-dim: #7E654E;
+
+  /* Accent Colors: Burnt Orange, Dark Roast & Buttercream */
+  --gold-50: #FFFEEB;
+  --gold-100: #FDFBD4;                /* Swatch: Buttercream */
+  --gold-200: #F7E4A8;
+  --gold-300: #E2933C;
+  --gold-400: #D07212;
+  --gold-primary: #C05800;            /* Swatch: Vibrant Burnt Orange */
+  --gold-dark: #713600;               /* Swatch: Deep Roasted Coffee */
+  --gold-glow: rgba(192, 88, 0, 0.16);
+  --gold-shadow: rgba(192, 88, 0, 0.32);
+
+  --amber-primary: #C05800;           /* Swatch: Burnt Orange Accent */
+  --amber-glow: rgba(192, 88, 0, 0.28);
+
+  /* Status Colors */
+  --status-active: #22C55E;
+  --status-active-bg: rgba(34, 197, 94, 0.12);
+  --status-active-border: rgba(34, 197, 94, 0.3);
+
+  --status-pending: #EAB308;
+  --status-pending-bg: rgba(234, 179, 8, 0.12);
+  --status-pending-border: rgba(234, 179, 8, 0.3);
+
+  --status-review: #38BDF8;
+  --status-review-bg: rgba(56, 189, 248, 0.12);
+  --status-review-border: rgba(56, 189, 248, 0.3);
+
+  --status-rejected: #EF4444;
+  --status-rejected-bg: rgba(239, 68, 68, 0.12);
+  --status-rejected-border: rgba(239, 68, 68, 0.3);
+
+  /* Gradients */
+  --gradient-gold: linear-gradient(135deg, #FDFBD4 0%, #C05800 50%, #713600 100%);
+  --gradient-gold-subtle: linear-gradient(135deg, rgba(192, 88, 0, 0.20) 0%, rgba(192, 88, 0, 0.02) 100%);
+  --gradient-surface: linear-gradient(180deg, #38240D 0%, #1D1207 100%);
+  --gradient-dark: linear-gradient(180deg, rgba(29, 18, 7, 0.6) 0%, #140C04 100%);
+  --gradient-border-gold: linear-gradient(135deg, rgba(192, 88, 0, 0.65), rgba(253, 251, 212, 0.15));
+
+  /* Shadows & Depth */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.65);
+  --shadow-xl: 0 24px 60px rgba(0, 0, 0, 0.85);
+  --shadow-gold: 0 8px 32px rgba(192, 88, 0, 0.26);
+  --shadow-inner: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+  /* Typography Families */
+  --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Sizing & Layout */
+  --max-width-site: 1240px;
+  --max-width-text: 720px;
+  --header-height: 74px;
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 26px;
+  --radius-pill: 9999px;
+
+  /* Transitions */
+  --transition-fast: 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   LIGHT THEME OVERRIDES (Burnt Coffee Cream & Espresso Palette)
+   ========================================================================== */
+[data-theme="light"] {
+  /* Bases & Backgrounds: Warm Linen & Steamed Milk */
+  --color-obsidian-950: #F8F4EE;
+  --color-obsidian-900: #F2EAE0;
+  --color-obsidian-850: #EADECF;
+  --color-obsidian-800: #DFCFC0;
+  --color-obsidian-750: #FFFFFF;
+  --color-obsidian-700: #D2BEAC;
+
+  /* Card Surfaces & Glass Overlays */
+  --surface-base: #F8F4EE;
+  --surface-card: #FFF6EB;
+  --surface-card-hover: #FFEED6;
+  --surface-elevated: #FFF2DF;
+  --surface-glass: rgba(255, 248, 238, 0.95);
+  --surface-glass-subtle: rgba(192, 88, 0, 0.10);
+
+  /* Borders & Dividers */
+  --border-subtle: rgba(192, 88, 0, 0.20);
+  --border-card: rgba(192, 88, 0, 0.35);
+  --border-focus: rgba(192, 88, 0, 0.85);
+  --border-gold-subtle: rgba(192, 88, 0, 0.45);
+
+  /* Typography Colors: Rich Roasted Espresso on Light */
+  --text-ivory: #221406;
+  --text-primary: #1C1004;
+  --text-secondary: #5A3A1C;
+  --text-muted: #7E5B3D;
+  --text-dim: #A07D5E;
+
+  /* Accent Colors: Burnt Orange, Dark Roast & Buttercream */
+  --gold-50: #FFFEEB;
+  --gold-100: #FDFBD4;
+  --gold-200: #F7E4A8;
+  --gold-300: #E2933C;
+  --gold-400: #D07212;
+  --gold-primary: #C05800;
+  --gold-dark: #713600;
+  --gold-glow: rgba(192, 88, 0, 0.12);
+  --gold-shadow: rgba(192, 88, 0, 0.22);
+
+  --amber-primary: #C05800;
+  --amber-glow: rgba(192, 88, 0, 0.20);
+
+  /* Status Colors */
+  --status-active: #15803D;
+  --status-active-bg: rgba(21, 128, 61, 0.10);
+  --status-active-border: rgba(21, 128, 61, 0.25);
+
+  --status-pending: #B45309;
+  --status-pending-bg: rgba(180, 83, 9, 0.10);
+  --status-pending-border: rgba(180, 83, 9, 0.25);
+
+  --status-review: #0284C7;
+  --status-review-bg: rgba(2, 132, 199, 0.10);
+  --status-review-border: rgba(2, 132, 199, 0.25);
+
+  --status-rejected: #DC2626;
+  --status-rejected-bg: rgba(220, 38, 38, 0.10);
+  --status-rejected-border: rgba(220, 38, 38, 0.25);
+
+  /* Gradients */
+  --gradient-gold: linear-gradient(135deg, #FDFBD4 0%, #C05800 50%, #713600 100%);
+  --gradient-gold-subtle: linear-gradient(135deg, rgba(192, 88, 0, 0.22) 0%, rgba(192, 88, 0, 0.05) 100%);
+  --gradient-surface: linear-gradient(145deg, #FFF9F0 0%, #FFF0DD 50%, #FCE3BC 100%);
+  --gradient-dark: linear-gradient(180deg, rgba(254, 246, 235, 0.95) 0%, #F8EFE2 100%);
+  --gradient-border-gold: linear-gradient(135deg, rgba(192, 88, 0, 0.65), rgba(113, 54, 0, 0.25));
+
+  /* Shadows & Depth */
+  --shadow-sm: 0 2px 6px rgba(56, 36, 13, 0.06);
+  --shadow-md: 0 6px 18px rgba(56, 36, 13, 0.08);
+  --shadow-lg: 0 14px 36px rgba(56, 36, 13, 0.10);
+  --shadow-xl: 0 24px 60px rgba(56, 36, 13, 0.14);
+  --shadow-gold: 0 8px 28px rgba(192, 88, 0, 0.18);
+  --shadow-inner: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
