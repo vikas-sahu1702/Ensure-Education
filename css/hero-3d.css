@@ -384,9 +384,29 @@
   }
 }
 
+@media (max-width: 768px) {
+  .hero-visual-stage {
+    height: 320px;
+  }
+  .stage-glow {
+    width: 280px;
+    height: 280px;
+  }
+  .hero-section {
+    padding: 20px 0 60px 0;
+  }
+}
+
 @media (max-width: 640px) {
   .journey-timeline {
     grid-template-columns: 1fr;
+  }
+  .hero-meta-stats {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .meta-stat-item {
+    flex: 1 1 40%;
   }
 }
 
