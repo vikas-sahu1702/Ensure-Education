@@ -80,6 +80,12 @@ class TalvexApp {
     if (typeof TalvexPortals !== 'undefined') {
       this.portals = new TalvexPortals();
     }
+
+    // 5. Initialize Auth Interactive System
+    if (typeof AuthInteractiveSystem !== 'undefined') {
+      window.talvexAuthInteractive = new AuthInteractiveSystem();
+      window.talvexAuthInteractive.init();
+    }
   }
 
   setupRouter() {
@@ -97,10 +103,47 @@ class TalvexApp {
       '#home', '#about', '#how-it-works', '#benefits', '#eligibility',
       '#colleges', '#protection', '#faq', '#terms', '#contact',
       '#student-login', '#student-register', '#college-login',
-      '#college-portal', '#student-dashboard', '#admin-dashboard'
+      '#college-portal', '#student-dashboard', '#admin-dashboard',
+      '#register-portal', '#college-register', '#unified-auth'
     ];
 
-    const targetRoute = routes.includes(route) ? route : '#home';
+    let targetRoute = routes.includes(route) ? route : '#home';
+
+    // --- Legacy Auth Interception ---
+    if (['#student-login', '#college-login'].includes(targetRoute)) {
+      window.location.hash = '#unified-auth';
+      if (window.talvexAuthInteractive) window.talvexAuthInteractive.showLogin();
+      return;
+    }
+    if (targetRoute === '#register-portal') {
+      window.location.hash = '#unified-auth';
+      if (window.talvexAuthInteractive) window.talvexAuthInteractive.showRegister();
+      return;
+    }
+
+    // --- Route Guards (RBAC) ---
+    const state = window.talvexStore?.state;
+    const isAuth = state?.currentUser && state?.authToken;
+    
+    if (targetRoute === '#student-dashboard') {
+      if (!isAuth || state.currentUser.role !== 'STUDENT') {
+        if (window.showToast) window.showToast('Please log in to access the Student Dashboard', 'error');
+        window.location.hash = '#student-login';
+        return;
+      }
+    } else if (targetRoute === '#college-portal') {
+      if (!isAuth || state.currentUser.role !== 'COLLEGE') {
+        if (window.showToast) window.showToast('Please log in to access the College Portal', 'error');
+        window.location.hash = '#college-login';
+        return;
+      }
+    } else if (targetRoute === '#admin-dashboard') {
+      if (!isAuth || state.currentUser.role !== 'ADMIN') {
+        if (window.showToast) window.showToast('Please log in as Administrator', 'error');
+        window.location.hash = '#college-login'; // Admins can use the partner login for demo
+        return;
+      }
+    }
 
     // Hide all view sections
     document.querySelectorAll('.page-view').forEach(view => {
@@ -226,40 +269,13 @@ class TalvexApp {
   }
 
   setupThemeToggle() {
-    const toggleBtn = document.getElementById('theme-toggle-btn');
-    const savedTheme = localStorage.getItem('talvex_theme');
+    // Enforce light mode permanently
+    document.documentElement.setAttribute('data-theme', 'light');
+    localStorage.setItem('talvex_theme', 'light');
     
-    // Apply saved theme, or fallback to dark mode
-    const initialTheme = savedTheme === 'light' ? 'light' : 'dark';
-    this.applyTheme(initialTheme, false);
-
-    if (toggleBtn) {
-      toggleBtn.addEventListener('click', () => {
-        const isCurrentLight = document.documentElement.getAttribute('data-theme') === 'light';
-        const nextTheme = isCurrentLight ? 'dark' : 'light';
-        this.applyTheme(nextTheme, true);
-      });
-    }
-  }
-
-  applyTheme(theme, notify = false) {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('talvex_theme', theme);
-
-    const toggleBtn = document.getElementById('theme-toggle-btn');
-    if (toggleBtn) {
-      const nextLabel = theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode';
-      toggleBtn.setAttribute('aria-label', nextLabel);
-      toggleBtn.setAttribute('title', nextLabel);
-    }
-
     // Inform 3D shield if it exists
     if (this.shield3D && typeof this.shield3D.onThemeChange === 'function') {
-      this.shield3D.onThemeChange(theme);
-    }
-
-    if (notify && typeof window.showToast === 'function') {
-      window.showToast(`Switched to ${theme === 'light' ? 'Light' : 'Dark'} Mode`, 'gold');
+      this.shield3D.onThemeChange('light');
     }
   }
 

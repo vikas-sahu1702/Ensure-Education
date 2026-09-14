@@ -512,7 +512,6 @@
   };
 
   // --- 2. PAGE CONFIGURATIONS (ALL 16 VIEWS) ---
-  // --- 2. PAGE CONFIGURATIONS (ALL 16 VIEWS) ---
   // STRICT RULE: Every character on any given page is 100% UNIQUE. No duplicates.
   const PAGE_CONFIGS = {
     // #1. HOME VIEW (6 unique characters)

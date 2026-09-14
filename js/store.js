@@ -14,6 +14,10 @@ const defaultState = {
     currencySymbol: '₹',
   },
 
+  // Active Session Authentication
+  currentUser: null,
+  authToken: null,
+
   // Active Session Role: 'public' | 'student' | 'college' | 'admin'
   currentRole: 'public',
 
@@ -342,6 +346,30 @@ class TalvexStore {
   }
 
   // --- State Modifiers ---
+
+  async login(email, password) {
+    if (window.talvexApiClient) {
+      try {
+        const result = await window.talvexApiClient.login(email, password);
+        this.state.currentUser = { email, role: result.role };
+        this.state.authToken = result.tempToken || 'active-session';
+        this.setRole(result.role.toLowerCase());
+        this.saveState();
+        return true;
+      } catch (err) {
+        console.error('Login failed', err);
+        throw err;
+      }
+    }
+    return false;
+  }
+
+  logout() {
+    this.state.currentUser = null;
+    this.state.authToken = null;
+    this.setRole('public');
+    this.saveState();
+  }
 
   setRole(role) {
     this.state.currentRole = role;

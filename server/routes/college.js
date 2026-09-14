@@ -2,7 +2,8 @@
  * TALVEX PARTNER COLLEGE ROUTES
  */
 
-const { College, Student, Policy, FeePayer, Document } = require('../db/database');
+const { College, Student, Policy, FeePayer, Document, User } = require('../db/database');
+const crypto = require('crypto');
 
 async function handleCollegeDashboard(req, res, query) {
   try {
@@ -153,8 +154,58 @@ async function handleVerifyStudent(req, res, studentId) {
   }
 }
 
+async function handleCollegeRegister(req, res, body) {
+  try {
+    const { name, code, city, established_year, email, password } = body;
+    
+    // Check if user exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      throw { status: 400, message: 'Email already registered.' };
+    }
+
+    const collegeId = `COL-${Math.floor(100 + Math.random() * 900)}`;
+
+    const newCollege = new College({
+      id: collegeId,
+      name,
+      code,
+      city,
+      established_year,
+      status: 'ACTIVE_PARTNER'
+    });
+    await newCollege.save();
+
+    // Hashing password trivially for the prototype. Use bcrypt in production.
+    const passwordHash = crypto.createHash('sha256').update(password).digest('hex');
+
+    const newUser = new User({
+      id: `USR-${Date.now()}`,
+      email,
+      password_hash: passwordHash,
+      role: 'COLLEGE',
+      college_id: collegeId,
+    });
+    await newUser.save();
+
+    res.writeHead(201, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({
+      success: true,
+      message: 'College successfully registered.',
+      college: newCollege
+    }));
+  } catch (err) {
+    res.writeHead(err.status || 500, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({
+      success: false,
+      error: err.message
+    }));
+  }
+}
+
 module.exports = {
   handleCollegeDashboard,
   handleCollegeStudents,
-  handleVerifyStudent
+  handleVerifyStudent,
+  handleCollegeRegister
 };

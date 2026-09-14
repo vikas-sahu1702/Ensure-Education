@@ -90,6 +90,45 @@ class TalvexApiClient {
     return window.talvexStore.registerNewStudent(formData);
   }
 
+  async registerCollege(formData) {
+    if (this.isBackendOnline) {
+      try {
+        const res = await fetch(`${API_BASE_URL}/college/register`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+        const result = await res.json();
+        if (!res.ok) {
+          throw new Error(result.error || 'Registration failed');
+        }
+        return result.college;
+      } catch (err) {
+        throw err;
+      }
+    }
+    // Offline local simulation
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        window.talvexStore.state.colleges.push({
+          id: `COL-${Math.floor(100 + Math.random() * 900)}`,
+          name: formData.name,
+          code: formData.code,
+          city: formData.city,
+          established: formData.established_year,
+          totalStudents: 0,
+          enrolledTalvex: 0,
+          activePolicies: 0,
+          pendingVerification: 0,
+          incentiveAccrued: 0,
+          status: 'ACTIVE_PARTNER'
+        });
+        window.talvexStore.saveState();
+        resolve(true);
+      }, 500);
+    });
+  }
+
   async submitClaim(claimData) {
     if (this.isBackendOnline) {
       try {
@@ -124,6 +163,39 @@ class TalvexApiClient {
       }
     }
     window.talvexStore.updateSettings(settings);
+  }
+  async login(email, password) {
+    if (this.isBackendOnline) {
+      try {
+        const res = await fetch(`${API_BASE_URL}/auth/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        const result = await res.json();
+        if (!res.ok) {
+          throw new Error(result.error || 'Login failed');
+        }
+        return result; // Contains { message, tempToken, role }
+      } catch (err) {
+        throw err;
+      }
+    }
+    
+    // Offline local simulation
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (email.includes('admin')) {
+          resolve({ tempToken: 'mock-token', role: 'ADMIN' });
+        } else if (email.includes('registrar') || email.includes('college')) {
+          resolve({ tempToken: 'mock-token', role: 'COLLEGE' });
+        } else if (email.includes('student') || email.includes('aarav')) {
+          resolve({ tempToken: 'mock-token', role: 'STUDENT' });
+        } else {
+          reject(new Error('Invalid demo credentials in offline mode.'));
+        }
+      }, 500);
+    });
   }
 }
 

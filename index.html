@@ -244,7 +244,7 @@
 <body>
 
   <!-- Top Role Quick-Switcher Bar -->
-  <div class="role-bar">
+  <div class="role-bar" style="display: none;">
     <div class="container role-bar-inner">
       <div style="display: flex; align-items: center; gap: 8px;">
         <span class="badge badge-gold" style="font-size: 0.72rem;">INSTITUTIONAL SCHEME</span>
@@ -290,30 +290,9 @@
 
       <!-- Action Buttons -->
       <div class="header-actions">
-        <!-- Theme Toggle (Dark / Light Mode) -->
-        <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Dark and Light Mode" title="Toggle Dark and Light Mode">
-          <span class="theme-icon sun-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="5"></circle>
-              <line x1="12" y1="1" x2="12" y2="3"></line>
-              <line x1="12" y1="21" x2="12" y2="23"></line>
-              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-              <line x1="1" y1="12" x2="3" y2="12"></line>
-              <line x1="21" y1="12" x2="23" y2="12"></line>
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
-          </span>
-          <span class="theme-icon moon-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-          </span>
-        </button>
 
         <a href="#student-login" class="btn btn-secondary btn-sm" id="nav-login-btn">Log In</a>
-        <a href="#student-register" class="btn btn-primary btn-sm" id="nav-protect-btn">Protect My Education</a>
+        <a href="#register-portal" class="btn btn-primary btn-sm" id="nav-protect-btn">Protect My Education</a>
         <button class="menu-toggle-btn" id="mobile-menu-toggle" aria-label="Toggle Navigation Menu">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -347,7 +326,7 @@
               An education protection platform designed to help students safeguard their academic journey through affordable fee-payer protection. Pay just 1% of your course fee.
             </p>
             <div class="hero-ctas">
-              <a href="#student-register" class="btn btn-crystal-glow btn-lg" id="hero-cta-primary">
+              <a href="#register-portal" class="btn btn-crystal-glow btn-lg" id="hero-cta-primary">
                 <svg class="sparkle-star" viewBox="0 0 96 96"><path d="M93.781 51.578C95 50.969 96 49.359 96 48c0-1.375-1-2.969-2.219-3.578 0 0-22.868-1.514-31.781-10.422-8.915-8.91-10.438-31.781-10.438-31.781C50.969 1 49.375 0 48 0s-2.969 1-3.594 2.219c0 0-1.5 22.87-10.406 31.781-8.908 8.913-31.781 10.422-31.781 10.422C1 45.031 0 46.625 0 48c0 1.359 1 2.969 2.219 3.578 0 0 22.873 1.51 31.781 10.422 8.906 8.911 10.406 31.781 10.406 31.781C45.031 95 46.625 96 48 96s2.969-1 3.562-2.219c0 0 1.523-22.871 10.438-31.781 8.913-8.908 31.781-10.422 31.781-10.422Z" /></svg>
                 <svg class="sparkle-star" viewBox="0 0 96 96"><path d="M93.781 51.578C95 50.969 96 49.359 96 48c0-1.375-1-2.969-2.219-3.578 0 0-22.868-1.514-31.781-10.422-8.915-8.91-10.438-31.781-10.438-31.781C50.969 1 49.375 0 48 0s-2.969 1-3.594 2.219c0 0-1.5 22.87-10.406 31.781-8.908 8.913-31.781 10.422-31.781 10.422C1 45.031 0 46.625 0 48c0 1.359 1 2.969 2.219 3.578 0 0 22.873 1.51 31.781 10.422 8.906 8.911 10.406 31.781 10.406 31.781C45.031 95 46.625 96 48 96s2.969-1 3.562-2.219c0 0 1.523-22.871 10.438-31.781 8.913-8.908 31.781-10.422 31.781-10.422Z" /></svg>
                 <svg class="sparkle-star" viewBox="0 0 96 96"><path d="M93.781 51.578C95 50.969 96 49.359 96 48c0-1.375-1-2.969-2.219-3.578 0 0-22.868-1.514-31.781-10.422-8.915-8.91-10.438-31.781-10.438-31.781C50.969 1 49.375 0 48 0s-2.969 1-3.594 2.219c0 0-1.5 22.87-10.406 31.781-8.908 8.913-31.781 10.422-31.781 10.422C1 45.031 0 46.625 0 48c0 1.359 1 2.969 2.219 3.578 0 0 22.873 1.51 31.781 10.422 8.906 8.911 10.406 31.781 10.406 31.781C45.031 95 46.625 96 48 96s2.969-1 3.562-2.219c0 0 1.523-22.871 10.438-31.781 8.913-8.908 31.781-10.422 31.781-10.422Z" /></svg>
@@ -761,7 +740,7 @@
             <p style="max-width: 600px; margin: 0 auto 32px auto; font-size: 1.1rem;">
               Join thousands of students who have secured their academic future. Register in minutes with your college ID or fee receipt.
             </p>
-            <a href="#student-register" class="btn btn-crystal-glow btn-lg">
+            <a href="#register-portal" class="btn btn-crystal-glow btn-lg">
               <svg class="sparkle-star" viewBox="0 0 96 96"><path d="M93.781 51.578C95 50.969 96 49.359 96 48c0-1.375-1-2.969-2.219-3.578 0 0-22.868-1.514-31.781-10.422-8.915-8.91-10.438-31.781-10.438-31.781C50.969 1 49.375 0 48 0s-2.969 1-3.594 2.219c0 0-1.5 22.87-10.406 31.781-8.908 8.913-31.781 10.422-31.781 10.422C1 45.031 0 46.625 0 48c0 1.359 1 2.969 2.219 3.578 0 0 22.873 1.51 31.781 10.422 8.906 8.911 10.406 31.781 10.406 31.781C45.031 95 46.625 96 48 96s2.969-1 3.562-2.219c0 0 1.523-22.871 10.438-31.781 8.913-8.908 31.781-10.422 31.781-10.422Z" /></svg>
               <svg class="sparkle-star" viewBox="0 0 96 96"><path d="M93.781 51.578C95 50.969 96 49.359 96 48c0-1.375-1-2.969-2.219-3.578 0 0-22.868-1.514-31.781-10.422-8.915-8.91-10.438-31.781-10.438-31.781C50.969 1 49.375 0 48 0s-2.969 1-3.594 2.219c0 0-1.5 22.87-10.406 31.781-8.908 8.913-31.781 10.422-31.781 10.422C1 45.031 0 46.625 0 48c0 1.359 1 2.969 2.219 3.578 0 0 22.873 1.51 31.781 10.422 8.906 8.911 10.406 31.781 10.406 31.781C45.031 95 46.625 96 48 96s2.969-1 3.562-2.219c0 0 1.523-22.871 10.438-31.781 8.913-8.908 31.781-10.422 31.781-10.422Z" /></svg>
               <svg class="sparkle-star" viewBox="0 0 96 96"><path d="M93.781 51.578C95 50.969 96 49.359 96 48c0-1.375-1-2.969-2.219-3.578 0 0-22.868-1.514-31.781-10.422-8.915-8.91-10.438-31.781-10.438-31.781C50.969 1 49.375 0 48 0s-2.969 1-3.594 2.219c0 0-1.5 22.87-10.406 31.781-8.908 8.913-31.781 10.422-31.781 10.422C1 45.031 0 46.625 0 48c0 1.359 1 2.969 2.219 3.578 0 0 22.873 1.51 31.781 10.422 8.906 8.911 10.406 31.781 10.406 31.781C45.031 95 46.625 96 48 96s2.969-1 3.562-2.219c0 0 1.523-22.871 10.438-31.781 8.913-8.908 31.781-10.422 31.781-10.422Z" /></svg>
@@ -1135,6 +1114,189 @@
         </div>
       </section>
     </div>
+    <!-- ==================== UNIFIED INTERACTIVE AUTH ==================== -->
+    <div class="page-view" id="view-unified-auth" style="display: none; padding: 40px 20px;">
+      <div class="container" style="max-width: 1000px;">
+        <div class="auth-portal-grid">
+          
+          <!-- Character Pane -->
+          <div class="auth-character-pane">
+            <svg class="auth-mascot" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+              <!-- Body -->
+              <g class="auth-char-body">
+                <path d="M 100,400 C 100,280 150,200 200,200 C 250,200 300,280 300,400 Z" fill="#C05800" />
+                <path d="M 120,400 C 120,300 160,240 200,240 C 240,240 280,300 280,400 Z" fill="#4E290C" />
+              </g>
+              
+              <!-- Head -->
+              <g class="auth-char-head" transform="translate(0, 0)">
+                <!-- Face Base -->
+                <rect x="120" y="100" width="160" height="130" rx="60" fill="#E6C29E" />
+                <path d="M 120,160 Q 200,250 280,160 Z" fill="#F5DEC3" />
+                
+                <!-- Ears -->
+                <circle cx="115" cy="150" r="18" fill="#C05800" />
+                <circle cx="115" cy="150" r="10" fill="#3A200A" />
+                <circle cx="285" cy="150" r="18" fill="#C05800" />
+                <circle cx="285" cy="150" r="10" fill="#3A200A" />
+
+                <!-- Nose -->
+                <ellipse cx="200" cy="180" rx="12" ry="8" fill="#3A200A" />
+                
+                <!-- Eyes Group (moves with cursor) -->
+                <g class="auth-char-eyes-group">
+                  <g class="auth-eyes-open">
+                    <!-- Left Eye -->
+                    <circle cx="160" cy="150" r="14" fill="#FFFFFF" />
+                    <circle cx="160" cy="150" r="7" fill="#140C04" />
+                    <circle cx="163" cy="147" r="2" fill="#FFFFFF" />
+                    
+                    <!-- Right Eye -->
+                    <circle cx="240" cy="150" r="14" fill="#FFFFFF" />
+                    <circle cx="240" cy="150" r="7" fill="#140C04" />
+                    <circle cx="243" cy="147" r="2" fill="#FFFFFF" />
+                  </g>
+                  
+                  <g class="auth-eyes-closed" style="opacity: 0; transition: opacity 0.2s;">
+                    <path d="M 146,150 Q 160,158 174,150" fill="none" stroke="#3A200A" stroke-width="4" stroke-linecap="round" />
+                    <path d="M 226,150 Q 240,158 254,150" fill="none" stroke="#3A200A" stroke-width="4" stroke-linecap="round" />
+                  </g>
+                </g>
+              </g>
+
+              <!-- Arms (Pivot from shoulders to cover eyes) -->
+              <g class="auth-char-hands">
+                <!-- Left Arm -->
+                <g class="auth-arm-left" style="transform-origin: 110px 260px;">
+                  <!-- Sleeve -->
+                  <rect x="85" y="240" width="50" height="130" rx="25" fill="#C05800" />
+                  <!-- Hand -->
+                  <rect x="90" y="340" width="40" height="40" rx="15" fill="#E6C29E" />
+                  <!-- Fingers -->
+                  <path d="M 98,360 L 98,390 M 110,360 L 110,390 M 122,360 L 122,390" stroke="#D4B698" stroke-width="3" stroke-linecap="round" />
+                </g>
+                
+                <!-- Right Arm -->
+                <g class="auth-arm-right" style="transform-origin: 290px 260px;">
+                  <!-- Sleeve -->
+                  <rect x="265" y="240" width="50" height="130" rx="25" fill="#C05800" />
+                  <!-- Hand -->
+                  <rect x="270" y="340" width="40" height="40" rx="15" fill="#E6C29E" />
+                  <!-- Fingers -->
+                  <path d="M 278,360 L 278,390 M 290,360 L 290,390 M 302,360 L 302,390" stroke="#D4B698" stroke-width="3" stroke-linecap="round" />
+                </g>
+              </g>
+            </svg>
+          </div>
+
+          <!-- Form Pane -->
+          <div class="auth-form-pane">
+            <div class="auth-form-container">
+              
+              <!-- Login View -->
+              <div class="auth-form-view active" id="unified-login-form">
+                <div style="text-align: left; margin-bottom: 24px;">
+                  <h2 style="margin-bottom: 8px;">Welcome Back</h2>
+                  <p style="font-size: 0.85rem; color: var(--text-muted);">Access your Ensure Education dashboard.</p>
+                </div>
+
+                <form onsubmit="event.preventDefault(); const btn = this.querySelector('button[type=submit]'); btn.disabled = true; window.talvexStore.login(this.querySelector('input[type=text]').value, this.querySelector('input[type=password]').value).then(() => window.location.hash = '#student-dashboard').catch(() => { if(window.showToast) window.showToast('Login Failed', 'error'); }).finally(() => btn.disabled = false);">
+                  <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="text" class="form-control" placeholder="Enter your email" required>
+                  </div>
+                  <div class="form-group" style="position: relative;">
+                    <label class="form-label">Password</label>
+                    <input type="password" id="login-pwd" class="form-control" placeholder="••••••••••••" required>
+                    <button type="button" class="toggle-password-btn" data-target="login-pwd" style="position: absolute; right: 12px; top: 38px; background: none; border: none; color: var(--text-muted); cursor: pointer;">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    </button>
+                  </div>
+                  <div class="form-group" style="display: flex; justify-content: space-between; font-size: 0.82rem;">
+                    <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                      <input type="checkbox" checked> Remember me
+                    </label>
+                    <a href="#faq" style="color: var(--gold-primary);">Forgot password?</a>
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-bottom: 16px;">
+                    Log In
+                  </button>
+                  <div style="text-align: center; font-size: 0.85rem; color: var(--text-muted);">
+                    Don't have an account? <span class="auth-toggle-link toggle-to-register">Register here</span>
+                  </div>
+                </form>
+              </div>
+
+              <!-- Register View -->
+              <div class="auth-form-view" id="unified-register-form">
+                <div style="text-align: left; margin-bottom: 24px;">
+                  <h2 style="margin-bottom: 8px;">Create Account</h2>
+                  <p style="font-size: 0.85rem; color: var(--text-muted);">Join the Ensure Education platform.</p>
+                </div>
+
+                <form onsubmit="event.preventDefault(); const role = document.getElementById('auth-role-select').value; if(role === 'student') { window.location.hash = '#student-register'; } else { const btn = document.getElementById('auth-register-submit-btn'); btn.disabled = true; window.talvexApiClient.registerCollege({ name: this.name.value, code: this.code.value, city: this.city.value, established_year: this.established_year.value, email: this.email.value, password: this.password.value }).then(res => { window.talvexStore.login(this.email.value, this.password.value).then(() => window.location.hash = '#college-portal') }).catch(err => { if(window.showToast) window.showToast(err.message, 'error'); }).finally(() => btn.disabled = false); }">
+                  <div class="form-group">
+                    <label class="form-label">I am registering as a...</label>
+                    <select id="auth-role-select" class="form-control">
+                      <option value="student">Student (1% Protection)</option>
+                      <option value="college">Partner College / Institution</option>
+                    </select>
+                  </div>
+
+                  <!-- Student specific -->
+                  <div id="auth-student-fields">
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px;">
+                      Student registration requires a 10-step wizard to collect details about you and your fee payer. Click continue to proceed.
+                    </p>
+                  </div>
+
+                  <!-- College specific -->
+                  <div id="auth-college-fields" style="display: none;">
+                    <div class="form-group">
+                      <label class="form-label">Institution Name</label>
+                      <input type="text" name="name" class="form-control" placeholder="e.g. Apex Institute">
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                      <div class="form-group">
+                        <label class="form-label">College Code</label>
+                        <input type="text" name="code" class="form-control" placeholder="AIT-DELHI">
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">City</label>
+                        <input type="text" name="city" class="form-control" placeholder="New Delhi">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Established Year</label>
+                      <input type="number" name="established_year" class="form-control" placeholder="2004">
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Admin Email</label>
+                      <input type="email" name="email" class="form-control" placeholder="admin@college.edu">
+                    </div>
+                    <div class="form-group" style="position: relative;">
+                      <label class="form-label">Password</label>
+                      <input type="password" name="password" id="register-pwd" class="form-control" placeholder="••••••••••••">
+                      <button type="button" class="toggle-password-btn" data-target="register-pwd" style="position: absolute; right: 12px; top: 38px; background: none; border: none; color: var(--text-muted); cursor: pointer;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                      </button>
+                    </div>
+                  </div>
+
+                  <button type="submit" id="auth-register-submit-btn" class="btn btn-primary btn-block btn-lg" style="margin-bottom: 16px;">
+                    Continue as Student
+                  </button>
+                  <div style="text-align: center; font-size: 0.85rem; color: var(--text-muted);">
+                    Already have an account? <span class="auth-toggle-link toggle-to-login">Log in here</span>
+                  </div>
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- ==================== 10. STUDENT LOGIN VIEW ==================== -->
     <div class="page-view" id="view-student-login" style="display: none;">
@@ -1149,7 +1311,7 @@
               <p style="font-size: 0.85rem; color: var(--text-muted);">Access your Ensure Education policy card and documents</p>
             </div>
 
-            <form onsubmit="event.preventDefault(); window.talvexStore.setRole('student'); window.location.hash = '#student-dashboard';">
+            <form onsubmit="event.preventDefault(); const btn = this.querySelector('button[type=submit]'); btn.disabled = true; window.talvexStore.login(this.querySelector('input[type=text]').value, this.querySelector('input[type=password]').value).then(() => window.location.hash = '#student-dashboard').catch(() => { if(window.showToast) window.showToast('Login Failed', 'error'); }).finally(() => btn.disabled = false);">
               <div class="form-group">
                 <label class="form-label">Student Email / Mobile</label>
                 <input type="text" class="form-control" value="aarav.sharma@apex.edu.in" required>
@@ -1168,7 +1330,7 @@
                 Log In to Student Portal
               </button>
               <div style="text-align: center; font-size: 0.85rem; color: var(--text-muted);">
-                New admission? <a href="#student-register" style="color: var(--gold-primary); font-weight: 600;">Register scheme (1%)</a>
+                New admission? <a href="#register-portal" style="color: var(--gold-primary); font-weight: 600;">Register scheme (1%)</a>
               </div>
             </form>
           </div>
@@ -1176,6 +1338,74 @@
       </section>
     </div>
 
+    <!-- ==================== REGISTRATION PORTAL ==================== -->
+    <div class="page-view" id="view-register-portal" style="display: none;">
+      <section class="section">
+        <div class="container">
+          <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+            <div class="section-tag badge badge-gold" style="margin-bottom: 12px; display: inline-block;">JOIN ENSURE EDUCATION</div>
+            <h2 class="section-title">Who is registering?</h2>
+            <p class="section-description" style="max-width: 600px; margin: 0 auto;">Select your profile type to begin the application process.</p>
+          </div>
+          <div style="display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;">
+            <div class="card card-gold-border" style="width: 320px; text-align: center; padding: 40px 24px; cursor: pointer;" onclick="window.location.hash='#student-register'">
+              <div style="font-size: 3rem; margin-bottom: 16px;">👨‍🎓</div>
+              <h3>Student</h3>
+              <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px;">I want to protect my education with the 1% tuition premium scheme.</p>
+              <button class="btn btn-primary btn-block">Register as Student</button>
+            </div>
+            <div class="card" style="width: 320px; text-align: center; padding: 40px 24px; cursor: pointer; border: 1px solid var(--border-color);" onclick="window.location.hash='#college-register'">
+              <div style="font-size: 3rem; margin-bottom: 16px;">🏫</div>
+              <h3>College / Institution</h3>
+              <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px;">I want to partner with Ensure Education to protect my students.</p>
+              <button class="btn btn-outline-gold btn-block">Register as College</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ==================== COLLEGE REGISTRATION ==================== -->
+    <div class="page-view" id="view-college-register" style="display: none;">
+      <section class="section">
+        <div class="container" style="max-width: 600px;">
+          <div class="card card-gold-border">
+            <h2 style="text-align: center; margin-bottom: 24px;">Institutional Partnership Application</h2>
+            <form id="college-registration-form" onsubmit="event.preventDefault(); const btn = this.querySelector('button[type=submit]'); btn.disabled = true; window.talvexApiClient.registerCollege({ name: this.name.value, code: this.code.value, city: this.city.value, established_year: this.established_year.value, email: this.email.value, password: this.password.value }).then(res => { window.talvexStore.login(this.email.value, this.password.value).then(() => window.location.hash = '#college-portal') }).catch(err => { if(window.showToast) window.showToast(err.message, 'error'); }).finally(() => btn.disabled = false);">
+              <div class="form-group">
+                <label class="form-label">College / Institution Name</label>
+                <input type="text" name="name" class="form-control" required placeholder="e.g. Apex Institute of Technology">
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <div class="form-group">
+                  <label class="form-label">College Code</label>
+                  <input type="text" name="code" class="form-control" required placeholder="e.g. AIT-DELHI">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">City</label>
+                  <input type="text" name="city" class="form-control" required placeholder="e.g. New Delhi">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Established Year</label>
+                <input type="number" name="established_year" class="form-control" required placeholder="e.g. 2004">
+              </div>
+              <hr style="margin: 24px 0; border: none; border-top: 1px solid var(--border-color);">
+              <h4 style="margin-bottom: 16px;">Administrator Account</h4>
+              <div class="form-group">
+                <label class="form-label">Admin Email</label>
+                <input type="email" name="email" class="form-control" required placeholder="registrar@apex.edu.in">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Admin Password</label>
+                <input type="password" name="password" class="form-control" required>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 24px;">Submit Partnership Application</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
     <!-- ==================== 11. STUDENT 10-STEP REGISTRATION WIZARD ==================== -->
     <div class="page-view" id="view-student-register" style="display: none;">
       <section class="section" id="student-registration-wizard">
@@ -1551,7 +1781,7 @@
               <p style="font-size: 0.85rem; color: var(--text-muted);">Partner institution administration and verification</p>
             </div>
 
-            <form onsubmit="event.preventDefault(); window.talvexStore.setRole('college'); window.location.hash = '#college-portal';">
+            <form onsubmit="event.preventDefault(); const btn = this.querySelector('button[type=submit]'); btn.disabled = true; window.talvexStore.login(this.querySelector('input[type=text]').value, this.querySelector('input[type=password]').value).then(() => { if(window.talvexStore.state.currentUser.role === 'ADMIN') { window.location.hash = '#admin-dashboard'; } else { window.location.hash = '#college-portal'; } }).catch(() => { if(window.showToast) window.showToast('Login Failed', 'error'); }).finally(() => btn.disabled = false);">
               <div class="form-group">
                 <label class="form-label">Institutional College ID</label>
                 <input type="text" class="form-control" value="COL-001 (Apex Institute of Tech)" required>
@@ -1584,6 +1814,7 @@
             </div>
           </div>
           <div style="display: flex; gap: 12px;">
+            <button class="btn btn-secondary btn-sm" onclick="window.talvexStore.logout(); window.location.hash = '#home'; window.showToast('Logged out successfully', 'success');">Logout</button>
             <button class="btn btn-secondary btn-sm" onclick="window.print()">Download Policy PDF</button>
             <button class="btn btn-primary btn-sm" id="student-initiate-claim-btn">Initiate Claim</button>
           </div>
@@ -1709,6 +1940,7 @@
             </div>
           </div>
           <div style="display: flex; gap: 10px;">
+            <button class="btn btn-secondary btn-sm" onclick="window.talvexStore.logout(); window.location.hash = '#home'; window.showToast('Logged out successfully', 'success');">Logout</button>
             <button class="btn btn-outline-gold btn-sm" onclick="window.showToast('Exporting student roster report (CSV)...', 'gold')">Export Report</button>
             <a href="#student-register" class="btn btn-primary btn-sm">+ Register New Student</a>
           </div>
@@ -1861,9 +2093,12 @@
               <p>Master Controls &bull; Rule Configuration &bull; Claim Adjudication</p>
             </div>
           </div>
-          <button class="btn btn-secondary btn-sm" onclick="window.talvexStore.resetToDefault(); window.showToast('Platform store reset to initial seed state.', 'gold');">
-            Reset Demo State
-          </button>
+          <div style="display: flex; gap: 10px;">
+            <button class="btn btn-secondary btn-sm" onclick="window.talvexStore.logout(); window.location.hash = '#home'; window.showToast('Logged out successfully', 'success');">Logout</button>
+            <button class="btn btn-secondary btn-sm" onclick="window.talvexStore.resetToDefault(); window.showToast('Platform store reset to initial seed state.', 'gold');">
+              Reset Demo State
+            </button>
+          </div>
         </div>
 
         <!-- Admin Global KPIs -->
@@ -2138,6 +2373,7 @@
   <script src="js/registration.js"></script>
   <script src="js/portals.js"></script>
   <script src="js/character-system.js?v=unique1"></script>
+  <script src="js/auth-interactive.js"></script>
   <script src="js/app.js?v=revealanim3"></script>
 </body>
 </html>

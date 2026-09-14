@@ -12,7 +12,7 @@ const db = require('./db/database');
 const { calculatePremium, calculateCollegeIncentive } = require('./services/calculator');
 const { handleLogin, handleVerify2FA } = require('./routes/auth');
 const { handleRegister, handleGetPolicy, handleClaimSubmission } = require('./routes/student');
-const { handleCollegeDashboard, handleCollegeStudents, handleVerifyStudent } = require('./routes/college');
+const { handleCollegeDashboard, handleCollegeStudents, handleVerifyStudent, handleCollegeRegister } = require('./routes/college');
 const { handleAdminDashboard, handleAdminClaims, handleClaimAdjudication, handleGetSettings, handleUpdateSettings } = require('./routes/admin');
 
 const MIME_TYPES = {
@@ -155,6 +155,9 @@ const server = http.createServer(async (req, res) => {
     }
 
     // --- 5. PARTNER COLLEGE PORTAL ---
+    if (method === 'POST' && pathname === '/api/v1/college/register') {
+      return await handleCollegeRegister(req, res, body);
+    }
     if (method === 'GET' && pathname === '/api/v1/college/dashboard') {
       return await handleCollegeDashboard(req, res, query);
     }
