@@ -1324,6 +1324,10 @@
   .menu-toggle-btn {
     display: flex;
   }
+  
+  .mobile-only-link {
+    display: block !important;
+  }
 
   .role-bar-inner {
     flex-direction: column;
@@ -1352,8 +1356,8 @@
     padding: 12px 0;
   }
 
-  #nav-login-btn {
-    display: none; /* Hide login btn on small mobile to save space */
+  #nav-login-btn, #nav-protect-btn {
+    display: none; /* Hide buttons on small mobile to save space for hamburger menu */
   }
 
   .section-partnership > .container > div {
