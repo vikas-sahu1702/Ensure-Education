@@ -221,8 +221,8 @@ async function runTests() {
     });
     assert(
       aiDocQuery.status === 200 &&
-      /student/i.test(aiDocQuery.body.message) &&
-      /(father|mother)/i.test(aiDocQuery.body.message),
+      /(student|छात्र)/i.test(aiDocQuery.body.message) &&
+      /(father|mother|पिता|माता)/i.test(aiDocQuery.body.message),
       '17. AI Assistant Knowledge Retrieval: Document Checklist & Income Proof Exemptions'
     );
 

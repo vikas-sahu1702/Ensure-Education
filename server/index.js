@@ -23,6 +23,7 @@ const MIME_TYPES = {
   '.json': 'application/json; charset=utf-8',
   '.svg': 'image/svg+xml',
   '.png': 'image/png',
+  '.webp': 'image/webp',
   '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg',
   '.ico': 'image/x-icon',
@@ -101,7 +102,7 @@ const server = http.createServer(async (req, res) => {
     }
 
     // --- 1. SYSTEM & HEALTH CHECK ---
-    if (method === 'GET' && pathname === '/api/v1/health') {
+    if (method === 'GET' && (pathname === '/api/v1/health' || pathname === '/health' || pathname === '/healthz')) {
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({
         status: 'ONLINE',
@@ -212,11 +213,14 @@ const server = http.createServer(async (req, res) => {
 });
 
 // Start Server
-server.listen(config.PORT, config.HOST, () => {
+const PORT = process.env.PORT || config.PORT || 3000;
+const HOST = process.env.HOST || config.HOST || '0.0.0.0';
+
+server.listen(PORT, HOST, () => {
   console.log(`====================================================`);
   console.log(`TALVEX Education Protection Platform Backend REST API`);
-  console.log(`Server running at http://${config.HOST}:${config.PORT}`);
-  console.log(`Database: MongoDB connected (${config.MONGO_URI})`);
+  console.log(`Server running at http://${HOST}:${PORT}`);
+  console.log(`Database: MongoDB status (${config.MONGO_URI})`);
   console.log(`====================================================`);
 });
 

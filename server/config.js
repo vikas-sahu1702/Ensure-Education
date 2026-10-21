@@ -7,7 +7,7 @@ require('dotenv').config();
 
 module.exports = {
   PORT: process.env.PORT || 3000,
-  HOST: '127.0.0.1',
+  HOST: process.env.HOST || '0.0.0.0',
   MONGO_URI: process.env.MONGO_URI || 'mongodb://localhost:27017/talvex',
   JWT_SECRET: process.env.JWT_SECRET || 'talvex_institutional_protection_secret_2026',
   DEFAULTS: {
