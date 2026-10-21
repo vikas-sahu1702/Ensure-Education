@@ -1,0 +1,869 @@
+/* ==========================================================================
+   ENSURE EDUCATION — AI VOICE & CHAT ASSISTANT
+   Ultra-Premium Glassmorphism & Burnt Roast / Luxury Gold Design System
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Floating Trigger Launcher
+   -------------------------------------------------------------------------- */
+.ensure-ai-launcher {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9990;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #1C1004 0%, #38240D 50%, #C05800 100%);
+  color: #FFFEEB;
+  padding: 10px 18px 10px 12px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid rgba(253, 251, 212, 0.45);
+  box-shadow: 0 12px 32px rgba(56, 36, 13, 0.35), 0 0 24px rgba(192, 88, 0, 0.40);
+  cursor: pointer;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  user-select: none;
+}
+
+.ensure-ai-launcher:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 16px 40px rgba(56, 36, 13, 0.45), 0 0 32px rgba(192, 88, 0, 0.55);
+}
+
+.ensure-ai-launcher:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.ensure-ai-launcher-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #FDFBD4 0%, #C05800 65%, #713600 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 0 14px rgba(253, 251, 212, 0.5);
+  flex-shrink: 0;
+}
+
+.ensure-ai-launcher-avatar svg {
+  width: 22px;
+  height: 22px;
+  color: #1C1004;
+}
+
+.ensure-ai-pulse-ring {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(253, 251, 212, 0.6);
+  animation: launcherPulse 2.4s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes launcherPulse {
+  0% { transform: scale(0.95); opacity: 0.9; }
+  50% { transform: scale(1.28); opacity: 0; }
+  100% { transform: scale(1.28); opacity: 0; }
+}
+
+.ensure-ai-launcher-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.ensure-ai-launcher-title {
+  font-family: var(--font-heading);
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #FFFEEB;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ensure-ai-launcher-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: #C05800;
+  color: #FFFEEB;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.ensure-ai-launcher-sub {
+  font-size: 0.72rem;
+  color: rgba(253, 251, 212, 0.85);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ensure-ai-online-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22C55E;
+  box-shadow: 0 0 8px #22C55E;
+  display: inline-block;
+}
+
+/* --------------------------------------------------------------------------
+   2. Main Chat Container Modal
+   -------------------------------------------------------------------------- */
+.ensure-ai-widget {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 420px;
+  max-width: calc(100vw - 32px);
+  height: 640px;
+  max-height: calc(100vh - 48px);
+  z-index: 9995;
+  background: rgba(255, 250, 244, 0.96);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1.5px solid rgba(192, 88, 0, 0.35);
+  border-radius: 22px;
+  box-shadow: 0 28px 70px rgba(56, 36, 13, 0.28), 0 0 40px rgba(192, 88, 0, 0.16);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: bottom right;
+}
+
+[data-theme="dark"] .ensure-ai-widget {
+  background: rgba(20, 12, 5, 0.96);
+  border-color: rgba(253, 251, 212, 0.25);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.65), 0 0 40px rgba(192, 88, 0, 0.25);
+}
+
+.ensure-ai-widget.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.85) translateY(24px);
+}
+
+/* --------------------------------------------------------------------------
+   3. Widget Header
+   -------------------------------------------------------------------------- */
+.ensure-ai-header {
+  padding: 14px 18px;
+  background: linear-gradient(135deg, #221406 0%, #38240D 55%, #713600 100%);
+  color: #FFFEEB;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(253, 251, 212, 0.2);
+  flex-shrink: 0;
+}
+
+.ensure-ai-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ensure-ai-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #FDFBD4 0%, #C05800 70%, #713600 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1C1004;
+  box-shadow: 0 0 10px rgba(253, 251, 212, 0.4);
+}
+
+.ensure-ai-avatar svg {
+  width: 18px;
+  height: 18px;
+}
+
+.ensure-ai-title-wrap {
+  line-height: 1.25;
+}
+
+.ensure-ai-title-text {
+  font-family: var(--font-heading);
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: #FFFEEB;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ensure-ai-status-pill {
+  font-size: 0.68rem;
+  color: rgba(253, 251, 212, 0.85);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ensure-ai-header-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ensure-ai-btn-icon {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFEEB;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+  padding: 0;
+}
+
+.ensure-ai-btn-icon:hover {
+  background: rgba(255, 255, 255, 0.24);
+  transform: scale(1.05);
+}
+
+.ensure-ai-btn-icon svg {
+  width: 15px;
+  height: 15px;
+}
+
+.ensure-ai-lang-pill {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 8px;
+  background: rgba(192, 88, 0, 0.4);
+  border: 1px solid rgba(253, 251, 212, 0.4);
+  color: #FFFEEB;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ensure-ai-lang-pill:hover {
+  background: rgba(192, 88, 0, 0.75);
+}
+
+/* --------------------------------------------------------------------------
+   4. Subheader Banner (Language & Voice Mode Status)
+   -------------------------------------------------------------------------- */
+.ensure-ai-subbar {
+  padding: 8px 16px;
+  background: rgba(192, 88, 0, 0.08);
+  border-bottom: 1px solid rgba(192, 88, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.74rem;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.ensure-ai-voice-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  color: var(--gold-dark);
+  font-weight: 600;
+}
+
+.ensure-ai-voice-toggle svg {
+  width: 14px;
+  height: 14px;
+  color: var(--gold-primary);
+}
+
+.ensure-ai-engine-badge {
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: rgba(192, 88, 0, 0.14);
+  color: var(--gold-dark);
+  border: 1px solid rgba(192, 88, 0, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   5. Chat History Area
+   -------------------------------------------------------------------------- */
+.ensure-ai-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  scroll-behavior: smooth;
+}
+
+.ensure-ai-messages::-webkit-scrollbar {
+  width: 6px;
+}
+.ensure-ai-messages::-webkit-scrollbar-thumb {
+  background: rgba(192, 88, 0, 0.25);
+  border-radius: 4px;
+}
+
+/* Message Bubbles */
+.ensure-ai-msg {
+  display: flex;
+  gap: 10px;
+  max-width: 90%;
+  animation: msgFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes msgFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ensure-ai-msg.bot {
+  align-self: flex-start;
+}
+
+.ensure-ai-msg.user {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.ensure-ai-msg-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #FDFBD4, #C05800);
+  color: #1C1004;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.ensure-ai-msg-avatar svg {
+  width: 14px;
+  height: 14px;
+}
+
+.ensure-ai-msg-content {
+  background: #FFFFFF;
+  color: var(--text-primary);
+  padding: 12px 14px;
+  border-radius: 14px;
+  border-top-left-radius: 4px;
+  border: 1px solid rgba(192, 88, 0, 0.18);
+  font-size: 0.86rem;
+  line-height: 1.55;
+  box-shadow: 0 4px 14px rgba(56, 36, 13, 0.05);
+  position: relative;
+  word-break: break-word;
+}
+
+[data-theme="dark"] .ensure-ai-msg-content {
+  background: #251608;
+  color: #FDFBD4;
+  border-color: rgba(192, 88, 0, 0.35);
+}
+
+.ensure-ai-msg.user .ensure-ai-msg-content {
+  background: linear-gradient(135deg, #C05800 0%, #8E4000 100%);
+  color: #FFFEEB;
+  border-radius: 14px;
+  border-top-right-radius: 4px;
+  border: 1px solid rgba(253, 251, 212, 0.3);
+  box-shadow: 0 4px 14px rgba(192, 88, 0, 0.22);
+}
+
+.ensure-ai-msg-content p {
+  margin: 0 0 6px 0;
+}
+.ensure-ai-msg-content p:last-child {
+  margin-bottom: 0;
+}
+
+.ensure-ai-msg-content strong {
+  color: var(--gold-dark);
+  font-weight: 700;
+}
+.ensure-ai-msg.user .ensure-ai-msg-content strong {
+  color: #FFFEEB;
+}
+
+.ensure-ai-msg-content ul, .ensure-ai-msg-content ol {
+  margin: 6px 0 6px 18px;
+  padding: 0;
+}
+
+.ensure-ai-msg-content li {
+  margin-bottom: 4px;
+}
+
+/* AI Message Tables */
+.ensure-ai-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid rgba(192, 88, 0, 0.22);
+  background: rgba(255, 255, 255, 0.6);
+}
+[data-theme="dark"] .ensure-ai-table-wrap {
+  background: rgba(28, 16, 4, 0.5);
+}
+
+.ensure-ai-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.ensure-ai-table th,
+.ensure-ai-table td {
+  padding: 8px 10px;
+  border: 1px solid rgba(192, 88, 0, 0.16);
+  text-align: left;
+  vertical-align: top;
+}
+
+.ensure-ai-table th {
+  background: rgba(192, 88, 0, 0.12);
+  color: var(--gold-dark);
+  font-weight: 700;
+  white-space: nowrap;
+}
+[data-theme="dark"] .ensure-ai-table th {
+  background: rgba(192, 88, 0, 0.25);
+  color: #FDFBD4;
+}
+
+.ensure-ai-table tr:nth-child(even) td {
+  background: rgba(253, 251, 212, 0.15);
+}
+
+.ensure-ai-msg-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(192, 88, 0, 0.12);
+}
+
+.ensure-ai-action-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: color var(--transition-fast);
+}
+
+.ensure-ai-action-btn:hover {
+  color: var(--gold-primary);
+}
+
+.ensure-ai-action-btn.speaking {
+  color: #C05800;
+  font-weight: 700;
+  animation: pulseSpeaking 1.2s infinite;
+}
+
+@keyframes pulseSpeaking {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.ensure-ai-action-btn svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* Typing Indicator */
+.ensure-ai-typing {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+}
+
+.ensure-ai-typing-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold-primary);
+  animation: typingBounce 1.4s infinite ease-in-out both;
+}
+
+.ensure-ai-typing-dot:nth-child(1) { animation-delay: -0.32s; }
+.ensure-ai-typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes typingBounce {
+  0%, 80%, 100% { transform: scale(0); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   6. Quick Suggestion Pills (Documents & Terms focus)
+   -------------------------------------------------------------------------- */
+.ensure-ai-suggestions {
+  padding: 8px 14px;
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  white-space: nowrap;
+  flex-shrink: 0;
+  border-top: 1px solid rgba(192, 88, 0, 0.12);
+  background: rgba(255, 248, 238, 0.85);
+}
+
+.ensure-ai-suggestions::-webkit-scrollbar {
+  display: none;
+}
+
+.ensure-ai-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  background: #FFFFFF;
+  border: 1px solid rgba(192, 88, 0, 0.3);
+  border-radius: 12px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .ensure-ai-pill {
+  background: #251608;
+  color: #FFFEEB;
+  border-color: rgba(192, 88, 0, 0.4);
+}
+
+.ensure-ai-pill:hover {
+  background: var(--gold-primary);
+  color: #FFFEEB;
+  border-color: var(--gold-primary);
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   7. Live Voice Transcription Interim Bar
+   -------------------------------------------------------------------------- */
+.ensure-ai-voice-bar {
+  padding: 8px 16px;
+  background: linear-gradient(135deg, rgba(192, 88, 0, 0.15) 0%, rgba(56, 36, 13, 0.1) 100%);
+  border-top: 1px dashed rgba(192, 88, 0, 0.35);
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--gold-dark);
+  font-weight: 600;
+}
+
+.ensure-ai-voice-bar.active {
+  display: flex;
+}
+
+.ensure-ai-voice-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Animated Sound Wave Bars */
+.ensure-ai-soundwaves {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 16px;
+}
+
+.ensure-ai-wave-bar {
+  width: 3px;
+  height: 6px;
+  background: #C05800;
+  border-radius: 2px;
+  animation: soundWave 0.8s ease-in-out infinite alternate;
+}
+
+.ensure-ai-wave-bar:nth-child(1) { animation-delay: 0.1s; }
+.ensure-ai-wave-bar:nth-child(2) { animation-delay: 0.3s; }
+.ensure-ai-wave-bar:nth-child(3) { animation-delay: 0.2s; }
+.ensure-ai-wave-bar:nth-child(4) { animation-delay: 0.4s; }
+.ensure-ai-wave-bar:nth-child(5) { animation-delay: 0.15s; }
+
+@keyframes soundWave {
+  0% { height: 4px; }
+  100% { height: 16px; }
+}
+
+/* --------------------------------------------------------------------------
+   8. Chat Input Area
+   -------------------------------------------------------------------------- */
+.ensure-ai-input-form {
+  padding: 12px 14px;
+  background: #FFFFFF;
+  border-top: 1px solid rgba(192, 88, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .ensure-ai-input-form {
+  background: #1A0E04;
+  border-top-color: rgba(192, 88, 0, 0.3);
+}
+
+.ensure-ai-mic-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(192, 88, 0, 0.1);
+  border: 1.5px solid rgba(192, 88, 0, 0.35);
+  color: var(--gold-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+  position: relative;
+  padding: 0;
+}
+
+.ensure-ai-mic-btn:hover {
+  background: rgba(192, 88, 0, 0.22);
+  transform: scale(1.06);
+}
+
+.ensure-ai-mic-btn.recording {
+  background: #DC2626;
+  color: #FFFFFF;
+  border-color: #DC2626;
+  animation: micPulse 1.2s infinite;
+}
+
+@keyframes micPulse {
+  0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.6); }
+  70% { box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+}
+
+.ensure-ai-mic-btn svg {
+  width: 19px;
+  height: 19px;
+}
+
+.ensure-ai-input {
+  flex: 1;
+  background: rgba(192, 88, 0, 0.05);
+  border: 1px solid rgba(192, 88, 0, 0.25);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+[data-theme="dark"] .ensure-ai-input {
+  background: rgba(255, 255, 255, 0.06);
+  color: #FFFEEB;
+  border-color: rgba(192, 88, 0, 0.4);
+}
+
+.ensure-ai-input:focus {
+  border-color: var(--gold-primary);
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(192, 88, 0, 0.12);
+}
+
+[data-theme="dark"] .ensure-ai-input:focus {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.ensure-ai-send-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #C05800 0%, #713600 100%);
+  border: 1px solid rgba(253, 251, 212, 0.3);
+  color: #FFFEEB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.ensure-ai-send-btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 4px 14px rgba(192, 88, 0, 0.35);
+}
+
+.ensure-ai-send-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.ensure-ai-send-btn svg {
+  width: 17px;
+  height: 17px;
+}
+
+/* --------------------------------------------------------------------------
+   9. Settings Modal (Groq API Key configuration)
+   -------------------------------------------------------------------------- */
+.ensure-ai-settings-modal {
+  position: absolute;
+  top: 60px;
+  left: 12px;
+  right: 12px;
+  background: #FFFBF5;
+  border: 1.5px solid rgba(192, 88, 0, 0.45);
+  border-radius: 16px;
+  padding: 18px;
+  z-index: 9998;
+  box-shadow: 0 16px 40px rgba(56, 36, 13, 0.3);
+  display: none;
+  animation: modalPop 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] .ensure-ai-settings-modal {
+  background: #251608;
+  border-color: rgba(253, 251, 212, 0.3);
+}
+
+.ensure-ai-settings-modal.active {
+  display: block;
+}
+
+@keyframes modalPop {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.ensure-ai-settings-title {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ensure-ai-settings-desc {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin-bottom: 12px;
+}
+
+.ensure-ai-settings-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.ensure-ai-settings-field label {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.ensure-ai-settings-field input {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(192, 88, 0, 0.3);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  background: #FFFFFF;
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .ensure-ai-settings-field input {
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFEEB;
+}
+
+.ensure-ai-settings-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.ensure-ai-settings-btn {
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.ensure-ai-settings-btn.save {
+  background: var(--gold-primary);
+  color: #FFFEEB;
+}
+.ensure-ai-settings-btn.cancel {
+  background: rgba(192, 88, 0, 0.12);
+  color: var(--text-primary);
+}
+
+/* --------------------------------------------------------------------------
+   10. Mobile Responsiveness
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .ensure-ai-launcher {
+    bottom: 20px;
+    right: 18px;
+    padding: 8px 14px 8px 10px;
+  }
+  .ensure-ai-widget {
+    bottom: 12px;
+    right: 12px;
+    width: calc(100vw - 24px);
+    height: calc(100vh - 36px);
+    border-radius: 18px;
+  }
+}

@@ -67,7 +67,7 @@ async function issuePolicy(registrationData) {
       relationship: registrationData.feePayerRelationship,
       dob: new Date(registrationData.feePayerDob),
       age: validation.age,
-      phone: registrationData.feePayerPhone || '',
+      phone: registrationData.feePayerPhone || registrationData.phone || '+91 98111 22334',
       income_proof_required: validation.incomeProofRequired,
       income_proof_status: validation.incomeProofRequired ? 'VERIFIED' : 'NOT_REQUIRED'
     });

@@ -5,14 +5,18 @@
  * - College Incentive (Configurable in Admin, default 5% of course fee)
  */
 
-const { getSystemSettings } = require('./eligibility');
+const config = require('../config');
+const { getSystemSettingsSync } = require('./eligibility');
 
 /**
  * Calculate dynamic student scheme premium (1% default)
  */
 function calculatePremium(courseFee, customRate = null) {
   const fee = parseFloat(courseFee) || 0;
-  const rate = (customRate !== null) ? customRate : getSystemSettings().premiumPercentage;
+  const currentSettings = typeof getSystemSettingsSync === 'function' ? getSystemSettingsSync() : {};
+  const rate = (customRate !== null && customRate !== undefined)
+    ? customRate
+    : (currentSettings.premiumPercentage ?? config.DEFAULTS.PREMIUM_PERCENTAGE);
   const premium = Math.round(fee * (rate / 100));
   return {
     courseFee: fee,
@@ -27,7 +31,10 @@ function calculatePremium(courseFee, customRate = null) {
  */
 function calculateCollegeIncentive(courseFee, customRate = null) {
   const fee = parseFloat(courseFee) || 0;
-  const rate = (customRate !== null) ? customRate : getSystemSettings().collegeIncentivePercentage;
+  const currentSettings = typeof getSystemSettingsSync === 'function' ? getSystemSettingsSync() : {};
+  const rate = (customRate !== null && customRate !== undefined)
+    ? customRate
+    : (currentSettings.collegeIncentivePercentage ?? config.DEFAULTS.COLLEGE_INCENTIVE_PERCENTAGE);
   const incentive = Math.round(fee * (rate / 100));
   return {
     courseFee: fee,

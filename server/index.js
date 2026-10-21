@@ -14,6 +14,7 @@ const { handleLogin, handleVerify2FA } = require('./routes/auth');
 const { handleRegister, handleGetPolicy, handleClaimSubmission } = require('./routes/student');
 const { handleCollegeDashboard, handleCollegeStudents, handleVerifyStudent, handleCollegeRegister } = require('./routes/college');
 const { handleAdminDashboard, handleAdminClaims, handleClaimAdjudication, handleGetSettings, handleUpdateSettings } = require('./routes/admin');
+const { handleAiChat, handleAiStatus, handleAiSaveKey } = require('./routes/ai');
 
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -187,6 +188,17 @@ const server = http.createServer(async (req, res) => {
     }
     if (method === 'PUT' && pathname === '/api/v1/admin/settings') {
       return await handleUpdateSettings(req, res, body);
+    }
+
+    // --- 7. AI BILINGUAL VOICE & CHAT ASSISTANT ---
+    if (method === 'POST' && pathname === '/api/v1/ai/chat') {
+      return await handleAiChat(req, res, body);
+    }
+    if (method === 'GET' && pathname === '/api/v1/ai/status') {
+      return handleAiStatus(req, res);
+    }
+    if (method === 'POST' && pathname === '/api/v1/ai/save-key') {
+      return await handleAiSaveKey(req, res, body);
     }
 
     // 404 Route Not Found

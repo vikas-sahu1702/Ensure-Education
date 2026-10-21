@@ -4,6 +4,7 @@
 
 const { Policy, College, Claim, Student, FeePayer, SystemSetting, AuditLog } = require('../db/database');
 const { adjudicateClaim } = require('../services/policy');
+const { getSystemSettings } = require('../services/eligibility');
 
 async function handleAdminDashboard(req, res) {
   try {
@@ -162,6 +163,8 @@ async function handleUpdateSettings(req, res, body) {
     if (max_fee_payer_age !== undefined) {
       await SystemSetting.updateOne({ key: 'max_fee_payer_age' }, { value: String(max_fee_payer_age) });
     }
+
+    await getSystemSettings();
 
     await AuditLog.create({
       actor_role: 'ADMIN',

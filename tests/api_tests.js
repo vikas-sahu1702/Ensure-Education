@@ -208,6 +208,24 @@ async function runTests() {
       '15. Admin System Settings Parameter Update & Persistence'
     );
 
+    // 16. AI Assistant System Status
+    const aiStatus = await makeRequest('GET', '/api/v1/ai/status');
+    assert(
+      aiStatus.status === 200 && aiStatus.body.success === true && aiStatus.body.supportedLanguages.includes('hi'),
+      '16. AI Assistant Health Status & Bilingual Language Capability'
+    );
+
+    // 17. AI Assistant Bilingual Knowledge (Documents & Terms)
+    const aiDocQuery = await makeRequest('POST', '/api/v1/ai/chat', {
+      message: 'What documents are required for registration?'
+    });
+    assert(
+      aiDocQuery.status === 200 &&
+      /student/i.test(aiDocQuery.body.message) &&
+      /(father|mother)/i.test(aiDocQuery.body.message),
+      '17. AI Assistant Knowledge Retrieval: Document Checklist & Income Proof Exemptions'
+    );
+
   } catch (err) {
     console.error('Fatal test error:', err);
     failed++;

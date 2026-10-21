@@ -8,21 +8,37 @@
  */
 
 const { SystemSetting } = require('../db/database');
+const config = require('../config');
+
+let settingsCache = {
+  maxFeePayerAge: config.DEFAULTS.MAX_FEE_PAYER_AGE,
+  premiumPercentage: config.DEFAULTS.PREMIUM_PERCENTAGE,
+  collegeIncentivePercentage: config.DEFAULTS.COLLEGE_INCENTIVE_PERCENTAGE
+};
 
 /**
  * Fetch current system settings from DB
  */
 async function getSystemSettings() {
-  const settingsDocs = await SystemSetting.find({});
-  const settings = {};
-  settingsDocs.forEach(r => {
-    settings[r.key] = r.value;
-  });
-  return {
-    maxFeePayerAge: parseInt(settings.max_fee_payer_age || '55', 10),
-    premiumPercentage: parseFloat(settings.premium_percentage || '1.0'),
-    collegeIncentivePercentage: parseFloat(settings.college_incentive_percentage || '5.0')
-  };
+  try {
+    const settingsDocs = await SystemSetting.find({});
+    const settings = {};
+    settingsDocs.forEach(r => {
+      settings[r.key] = r.value;
+    });
+    settingsCache = {
+      maxFeePayerAge: parseInt(settings.max_fee_payer_age || String(config.DEFAULTS.MAX_FEE_PAYER_AGE), 10),
+      premiumPercentage: parseFloat(settings.premium_percentage || String(config.DEFAULTS.PREMIUM_PERCENTAGE)),
+      collegeIncentivePercentage: parseFloat(settings.college_incentive_percentage || String(config.DEFAULTS.COLLEGE_INCENTIVE_PERCENTAGE))
+    };
+  } catch (err) {
+    // Keep cached settings on error
+  }
+  return settingsCache;
+}
+
+function getSystemSettingsSync() {
+  return settingsCache;
 }
 
 /**
@@ -130,6 +146,7 @@ async function validateRegistrationPayload(data) {
 
 module.exports = {
   getSystemSettings,
+  getSystemSettingsSync,
   validateFeePayerAge,
   isIncomeProofRequired,
   validateRegistrationPayload

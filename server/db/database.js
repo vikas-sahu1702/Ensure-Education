@@ -1,13 +1,34 @@
 const mongoose = require('mongoose');
 const config = require('../config');
 
-// Connect to MongoDB
-mongoose.connect(config.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log('MongoDB connected successfully'))
-.catch(err => console.error('MongoDB connection error:', err));
+const LOCAL_FALLBACK_URI = 'mongodb://127.0.0.1:27017/talvex';
+
+// Connect to MongoDB with automatic fallback to local MongoDB if Atlas/primary fails
+async function initConnection() {
+  const primary = config.MONGO_URI;
+  try {
+    await mongoose.connect(primary, {
+      serverSelectionTimeoutMS: 3000
+    });
+    console.log(`MongoDB connected successfully to: ${primary.includes('@') ? 'MongoDB Atlas' : primary}`);
+  } catch (err) {
+    if (primary !== LOCAL_FALLBACK_URI) {
+      console.warn(`Primary MongoDB connection failed (${err.message}). Falling back to local MongoDB at ${LOCAL_FALLBACK_URI}...`);
+      try {
+        await mongoose.connect(LOCAL_FALLBACK_URI, {
+          serverSelectionTimeoutMS: 3000
+        });
+        console.log(`Connected successfully to local MongoDB at ${LOCAL_FALLBACK_URI}`);
+      } catch (localErr) {
+        console.error('Local MongoDB fallback connection also failed:', localErr.message);
+      }
+    } else {
+      console.error('MongoDB connection error:', err.message);
+    }
+  }
+}
+
+initConnection();
 
 // Schemas
 const systemSettingsSchema = new mongoose.Schema({
@@ -66,7 +87,7 @@ const feePayerSchema = new mongoose.Schema({
   relationship: { type: String, required: true },
   dob: { type: Date, required: true },
   age: { type: Number, required: true },
-  phone: { type: String, required: true },
+  phone: { type: String, default: '' },
   income_proof_required: { type: Boolean, required: true },
   income_proof_status: { type: String, required: true },
 }, { timestamps: true });

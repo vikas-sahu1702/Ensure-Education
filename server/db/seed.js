@@ -9,10 +9,19 @@ const config = require('../config');
 
 async function seedDatabase() {
   try {
-    console.log('Connecting to MongoDB for seeding...');
-    // We rely on database.js to connect, so we might just wait a bit or use mongoose.connection.readyState
     if (mongoose.connection.readyState === 0) {
-      await mongoose.connect(config.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+      try {
+        await mongoose.connect(config.MONGO_URI, { serverSelectionTimeoutMS: 3000 });
+      } catch (err) {
+        console.warn('Primary MongoDB connection failed. Falling back to local MongoDB at mongodb://127.0.0.1:27017/talvex...');
+        await mongoose.connect('mongodb://127.0.0.1:27017/talvex', { serverSelectionTimeoutMS: 3000 });
+      }
+    } else if (mongoose.connection.readyState === 2) {
+      await new Promise((resolve) => {
+        if (mongoose.connection.readyState === 1) return resolve();
+        mongoose.connection.once('open', resolve);
+        mongoose.connection.once('error', resolve);
+      });
     }
 
     console.log('Clearing existing data...');
